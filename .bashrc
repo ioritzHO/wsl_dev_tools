@@ -57,7 +57,8 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1="\[\033[38;5;140m\]\w>> \[$(tput sgr0)\]"
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -116,7 +117,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-alias vi=vim
+alias vi=nvim
 alias py=python3
 alias tmxm='tmux new-session -s main'
 alias tmxa='tmux new-session -t main -s aux'
@@ -128,8 +129,10 @@ set -o vi
 #python config
 export PYTHONSTARTUP=~/.pythonrc
 
-
 #Avoid green highlighted dirs for WSL bash
 export LS_COLORS=$LS_COLORS:'ow=1;34:';
+
+#FZF bash
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export DISPLAY=localhost:0.0
